@@ -14,4 +14,4 @@ jobs:
   nuget:
     uses: ./.github/workflows/main-workflow.yml
     with:
-      project_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet"
+      project_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core"
