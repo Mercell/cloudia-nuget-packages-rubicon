@@ -1,0 +1,17 @@
+name: Mercell.Cloudia.AuditLogging.Aspnet
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet/**"
+  pull_request:
+    paths:
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet/**"
+
+jobs:
+  nuget:
+    uses: ./.github/workflows/main-workflow.yml
+    with:
+      project_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet"

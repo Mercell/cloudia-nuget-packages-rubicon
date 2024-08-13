@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+	<VersionPrefix>1.0.1</VersionPrefix>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.400.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.400.3" targetFramework="net461" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" targetFramework="net461" />
+  </ItemGroup>
+
+</Project>

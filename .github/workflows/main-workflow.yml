@@ -1,0 +1,80 @@
+name: Test, build and publish a nuget package
+
+on:
+  workflow_call:
+    inputs:
+      dotnet_version:
+        description: ".NET SDK version to use"
+        type: string
+        required: false
+        default: "6.0.x"
+      project_path:
+        description: "Path to project root"
+        type: string
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.dotnet_version }}
+    
+    - name: Install dependencies
+      run: dotnet restore ${{ inputs.project_path }}
+    
+    - name: Build
+      run: dotnet build ${{ inputs.project_path }} -c Release --no-restore
+    
+    - name: Test
+      run: dotnet test ${{ inputs.project_path }} --no-restore
+
+  pack:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.dotnet_version }}
+
+    - name: Build and Pack NuGet package
+      run: dotnet pack ${{ inputs.project_path }} -c Release
+
+    - name: Upload NuGet package to GitHub
+      uses: actions/upload-artifact@v3
+      with:
+        name: nugetpkg
+        path: ${{ inputs.project_path }}/bin/Release
+
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: pack
+    steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.dotnet_version }}
+
+    - name: Download nuget package artifact
+      id: download
+      uses: actions/download-artifact@v3
+      with:
+        name: nugetpkg
+        path: nugetpkg
+
+    - name: Display structure of downloaded files
+      run: ls -laR
+      working-directory: ${{ steps.download.outputs.download-path }}
+
+    - name: Push package to GitHub packages
+      run: dotnet nuget push ${{ steps.download.outputs.download-path }}/*.nupkg --source https://nuget.pkg.github.com/Mercell/index.json --api-key ${{ env.GITHUB_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
