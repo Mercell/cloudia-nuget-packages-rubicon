@@ -55,6 +55,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: pack
     steps:
     - name: Setup .NET
