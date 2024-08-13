@@ -15,12 +15,18 @@ namespace Mercell.Cloudia.AuditLogging.Aspnet
     {
         public void Init(HttpApplication application)
         {
+            application.BeginRequest += new EventHandler(Application_BeginRequest);
             application.EndRequest += new EventHandler(Application_EndRequest);
+        }
+
+        private void Application_BeginRequest(object source, EventArgs e)
+        {
+            AuditLoggerContext.Reset();
         }
 
         private void Application_EndRequest(object source, EventArgs e)
         {
-            AuditLoggerContext.Reset();
+            AuditLoggerContext.Clear();
         }
 
         public void Dispose() { }
@@ -39,13 +45,14 @@ namespace Mercell.Cloudia.AuditLogging.Aspnet
 
         public async Task InvokeAsync(HttpContext context)
         {
+            AuditLoggerContext.Reset();
             try
             {
                 await _next(context);
             }
             finally
             {
-                AuditLoggerContext.Reset();
+                AuditLoggerContext.Clear();
             }
         }
     }

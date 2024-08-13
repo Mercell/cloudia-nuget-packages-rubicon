@@ -18,5 +18,12 @@ namespace Mercell.Cloudia.AuditLogging
         {
             _properties.Value = new AuditLoggerContextProperties();
         }
+
+        public static void Clear()
+        {
+            // Just call Reset() for now.
+            // The idea being that there's 'distinct' methods to start and end the context.
+            Reset();
+        }
     }
 }
