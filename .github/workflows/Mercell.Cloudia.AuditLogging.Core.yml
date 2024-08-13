@@ -3,12 +3,12 @@ name: Mercell.Cloudia.AuditLogging.Core
 on:
   pull_request:
     paths:
-      - "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core/**"
   push:
     branches:
       - "main"
     paths:
-      - "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core/**"
 
 jobs:
   nuget:

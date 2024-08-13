@@ -5,10 +5,10 @@ on:
     branches:
       - "main"
     paths:
-      - "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet/**"
   pull_request:
     paths:
-      - "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet/**"
 
 jobs:
   nuget:
