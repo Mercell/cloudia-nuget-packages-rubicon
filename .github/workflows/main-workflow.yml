@@ -12,6 +12,11 @@ on:
         description: "Path to project root"
         type: string
         required: true
+      tests_path:
+        description: "Path to tests"
+        type: string
+        required: false
+        default: ''
 
 jobs:
   test:
@@ -25,13 +30,13 @@ jobs:
         dotnet-version: ${{ inputs.dotnet_version }}
     
     - name: Install dependencies
-      run: dotnet restore ${{ inputs.project_path }}
+      run: dotnet restore ${{ inputs.tests_path != '' && inputs.tests_path || inputs.project_path }}
     
     - name: Build
-      run: dotnet build ${{ inputs.project_path }} -c Release --no-restore
+      run: dotnet build ${{ inputs.tests_path != '' && inputs.tests_path || inputs.project_path }} -c Release --no-restore
     
     - name: Test
-      run: dotnet test ${{ inputs.project_path }} --no-restore
+      run: dotnet test ${{ inputs.tests_path != '' && inputs.tests_path || inputs.project_path }} --no-restore
 
   pack:
     runs-on: ubuntu-latest

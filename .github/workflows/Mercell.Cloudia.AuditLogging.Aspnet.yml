@@ -6,12 +6,15 @@ on:
       - "main"
     paths:
       - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet/**"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Tests/**"
   pull_request:
     paths:
       - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet/**"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Tests/**"
 
 jobs:
   nuget:
     uses: ./.github/workflows/main-workflow.yml
     with:
       project_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Aspnet"
+      tests_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Tests"

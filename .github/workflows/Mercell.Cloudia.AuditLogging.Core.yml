@@ -4,14 +4,17 @@ on:
   pull_request:
     paths:
       - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core/**"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Tests/**"
   push:
     branches:
       - "main"
     paths:
       - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core/**"
+      - "Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Tests/**"
 
 jobs:
   nuget:
     uses: ./.github/workflows/main-workflow.yml
     with:
       project_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Core"
+      tests_path: "./Mercell.Cloudia.AuditLogging/Mercell.Cloudia.AuditLogging.Tests"
