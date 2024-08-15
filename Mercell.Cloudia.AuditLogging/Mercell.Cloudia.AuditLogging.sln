@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercell.Cloudia.AuditLoggin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mercell.Cloudia.AuditLogging.Aspnet", "Mercell.Cloudia.AuditLogging.Aspnet\Mercell.Cloudia.AuditLogging.Aspnet.csproj", "{126E3D27-A2C1-4134-AB96-217E3E7DDFC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercell.Cloudia.AuditLogging.Tests", "Mercell.Cloudia.AuditLogging.Tests\Mercell.Cloudia.AuditLogging.Tests.csproj", "{AC18F017-69AC-4579-B4A9-CACB2E00F0EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{126E3D27-A2C1-4134-AB96-217E3E7DDFC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{126E3D27-A2C1-4134-AB96-217E3E7DDFC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{126E3D27-A2C1-4134-AB96-217E3E7DDFC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC18F017-69AC-4579-B4A9-CACB2E00F0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC18F017-69AC-4579-B4A9-CACB2E00F0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC18F017-69AC-4579-B4A9-CACB2E00F0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC18F017-69AC-4579-B4A9-CACB2E00F0EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
