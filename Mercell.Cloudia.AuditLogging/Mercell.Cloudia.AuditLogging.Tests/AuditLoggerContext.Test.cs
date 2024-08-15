@@ -40,16 +40,20 @@ namespace Mercell.Cloudia.AuditLogging.Tests
         [TestMethod]
         public void TestSingleThread()
         {
-            static void action()
-            {
-                Assert.AreNotEqual(Guid.Empty, AuditLoggerContext.Properties.Ssid);
-                AuditLoggerContext.Properties.Ssid = Guid.NewGuid();
-            }
-
-            var parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = 1 };
             // Parallel.Invoke uses the main-thread if parallelism is set to 1
             // so set the ssid here to some Guid value.
             AuditLoggerContext.Properties.Ssid = Guid.NewGuid();
+            // Keep reference to the 'previous' value to check against within each invocation of the action.
+            var ssid = AuditLoggerContext.Properties.Ssid;
+
+            Action action = () =>
+            {
+                Assert.AreEqual(ssid, AuditLoggerContext.Properties.Ssid);
+                AuditLoggerContext.Properties.Ssid = Guid.NewGuid();
+                ssid = AuditLoggerContext.Properties.Ssid;
+            };
+
+            var parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = 1 };
             Parallel.Invoke(parallelOptions, action, action, action);
         }
 
